@@ -5,7 +5,7 @@ import { Usuario } from "../../models/usuario.model";
 import { URL_SERVICIOS } from "../../config/config";
 import { map } from "rxjs/operators";
 import swal from "sweetalert";
-import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import { SubirArchivoService } from "../subir-archivo/subir-archivo.service";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +13,11 @@ import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 export class UsuarioService {
   usuario: Usuario;
   token: string;
-  constructor(public http: HttpClient, public router: Router, public _subirArchivoService: SubirArchivoService) {
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public _subirArchivoService: SubirArchivoService
+  ) {
     /* console.log("Servicio de usuario listo"); */
     this.cargarStorage();
   }
@@ -99,25 +103,53 @@ export class UsuarioService {
     return this.http.put(url, usuario).pipe(
       map((resp: any) => {
         /* this.usuario = resp.usuario; */
-        let usuarioDB: Usuario = resp.usuario;
-        this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
+        if(usuario._id === this.usuario._id){
+          let usuarioDB: Usuario = resp.usuario;
+          this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
+        }
         swal("Usuario actualizado", usuario.nombre, "success");
-
         return true;
       })
     );
   }
 
-  cambiarImagen(archivo: File, id: string ){
-    this._subirArchivoService.subirArchivo(archivo, 'usuarios', id)
-      .then((resp:any) => {
+  cambiarImagen(archivo: File, id: string) {
+    this._subirArchivoService
+      .subirArchivo(archivo, "usuarios", id)
+      .then((resp: any) => {
         /* console.log(resp); */
         this.usuario.img = resp.usuario.img;
-        swal('Imagen actualizada', this.usuario.nombre, 'success');;
+        swal("Imagen actualizada", this.usuario.nombre, "success");
         this.guardarStorage(id, this.token, this.usuario);
       })
-      .catch(resp=>{
+      .catch(resp => {
         console.log(resp);
       });
+  }
+
+  cargarUsuarios(desde: number = 0) {
+    let url = URL_SERVICIOS + "/usuario?desde=" + desde;
+
+    return this.http.get(url);
+  }
+
+  buscarUsuarios(termino: string) {
+    let url = URL_SERVICIOS + "/busqueda/coleccion/usuarios/" + termino;
+    return this.http.get(url).pipe(map((resp: any) => resp.usuarios));
+  }
+
+  borrarUsuario(id: string) {
+    let url = URL_SERVICIOS + "/usuario/" + id;
+    url += "?token=" + this.token;
+    return this.http.delete(url).pipe(
+      map((resp: any) => {
+        swal(
+          "Usuario borrado",
+          "El usuario a sido eliminado correctamente",
+          "success"
+        );
+        return true;
+      })
+    );
   }
 }
