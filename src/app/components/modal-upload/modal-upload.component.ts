@@ -69,7 +69,7 @@ export class ModalUploadComponent implements OnInit {
         this._modalUploadService.notificacion.emit(resp);
         /* this._modalUploadService.ocultarModal(); */
         this.cerrarModal();
-        /* this.clearForm(); */
+        this.clearForm();
       })
       .catch(err => {
         console.log("Error en la carga...");

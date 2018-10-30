@@ -1,0 +1,70 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input #input (keyup)="buscarHospital(input.value)" type="text" class="form-control" placeholder="Buscar hospital...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-right">
+                    <button (click)="crearHospital()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary"><i class="fa fa-plus"></i> Crear Hospital</button>
+                </div>
+                <!-- <div class="text-right mt-2">
+                    <select name="" class="form-control custom-select custom-select-sm w70" (change)="cambiarLimite()">
+                        <option #option value="0">5</option>
+                        <option #option value="5">10</option>
+                    </select>
+                </div> -->
+                <!-- <h3 class="card-title">Hospitales registrados (<small>{{_hospitalService.totalHospitales}}</small>)</h3> -->
+                <h3 class="card-title">Hospitales registrados (<small>{{totalRegistros}}</small>)</h3>
+                <!-- <table class="table table-condensed table-hover"> -->
+                <!-- <table class="table full-color-table full-inverse-table hover-table"> -->
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Hospital</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitales">
+                            <td class="w70">
+                                <img (click)="mostrarModal(hospital._id)" [src]="hospital.img | imagen:'hospital'" class="img-50 pointer">
+                            </td>
+                            <td>
+                                <input [(ngModel)]="hospital.nombre" type="text" class="form-control form-control-sm" placeholder="Nombre del Hospital" name="nombre">
+                            </td>
+                            <td>
+                                <button (click)="guardarHospital(hospital)" class="btn btn-primary btn-sm"><i class="fa fa-save"></i></button>
+                                <button (click)="borrarHospital(hospital)" class="btn btn-danger btn-sm ml-1"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button *ngIf="desde>0" (click)="cambiarDesde(-5)" class="btn btn-secondary btn-sm">Anteriores</button>
+                <button *ngIf="desde+5<=totalRegistros" (click)="cambiarDesde(5)" class="btn btn-secondary btn-sm float-right">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>
