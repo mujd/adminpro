@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
     if (forma.invalid) {
       return;
     }
+    /* console.log(forma.value.email); */
 
     let usuario = new Usuario(null, forma.value.email, forma.value.password);
 

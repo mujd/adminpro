@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 declare function init_plugins();
 
 @Component({
-  selector: "app-nopagefound",
-  templateUrl: "./nopagefound.component.html",
+  selector: 'app-not-authorized',
+  templateUrl: './not-authorized.component.html',
   styles: [
     `
       .error-box {
@@ -32,11 +32,12 @@ declare function init_plugins();
     `
   ]
 })
-export class NopagefoundComponent implements OnInit {
+export class NotAuthorizedComponent implements OnInit {
   anio: number = new Date().getFullYear();
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     init_plugins();
   }
+
 }
