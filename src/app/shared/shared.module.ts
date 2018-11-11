@@ -11,6 +11,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { BreadcrumbsComponent } from "./breadcrumbs/breadcrumbs.component";
 import { NopagefoundComponent } from "./nopagefound/nopagefound.component";
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
   imports: [RouterModule, CommonModule, PipesModule],
@@ -19,13 +20,15 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
     SidebarComponent,
     BreadcrumbsComponent,
     NopagefoundComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    ModalUploadComponent
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ],
   providers: []
 })

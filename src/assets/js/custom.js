@@ -1,10 +1,3 @@
-/*
-Template Name: Admin Pro Admin
-Author: Wrappixel
-Email: niravjoshi87@gmail.com
-File: js
-*/
-
 function init_plugins() {
 
     $(function() {
@@ -66,6 +59,13 @@ function init_plugins() {
         });
 
         $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
+            $(".app-search").toggle(200);
+            // Agregar foco al abrir buscador
+            $('#inputSearch').focus();
+        });
+        // Quita valor del input al perder foco
+        $('#inputSearch').focusout(function() {
+            $('#inputSearch').val('');
             $(".app-search").toggle(200);
         });
         // ============================================================== 

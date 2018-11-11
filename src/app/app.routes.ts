@@ -4,11 +4,20 @@ import { LoginComponent } from "./login/login.component";
 import { NopagefoundComponent } from "./shared/nopagefound/nopagefound.component";
 import { RegisterComponent } from "./login/register.component";
 import { NotAuthorizedComponent } from "./shared/not-authorized/not-authorized.component";
+import { PagesComponent } from "./pages/pages.component";
+import { LoginGuardGuard, VerificaTokenGuard } from "./services/service.index";
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "not-authorized", component: NotAuthorizedComponent },
+  {
+    path: "",
+    canActivate: [LoginGuardGuard],
+    canActivateChild: [VerificaTokenGuard],
+    component: PagesComponent,
+    loadChildren: "./pages/pages.module#PagesModule"
+  },
   { path: "**", component: NopagefoundComponent }
 ];
 

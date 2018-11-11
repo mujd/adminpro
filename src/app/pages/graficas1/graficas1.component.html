@@ -38,3 +38,22 @@
     </div>
 
 </div>
+<div class="row">
+    <!-- <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                {{totalUsuarios}} <br> {{totalMedicos}}
+                <h4 class="card-title">{{graficos.grafico5.leyenda}}</h4>
+                <app-grafico-dona [chartLabels]="graficos.grafico5.labels" [chartData]="graficos.grafico5.data" chartType="doughnut"></app-grafico-dona>
+            </div>
+        </div>
+    </div> -->
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                {{totalUsuarios}} <br> {{totalMedicos}}
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

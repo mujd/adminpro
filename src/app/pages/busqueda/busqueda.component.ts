@@ -16,6 +16,7 @@ export class BusquedaComponent implements OnInit {
   usuarios: Usuario[] = [];
   medicos: Medico[] = [];
   hospitales: Hospital[] = [];
+  terminoBuscado: string = '';
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -31,6 +32,7 @@ export class BusquedaComponent implements OnInit {
   }
 
   buscar(termino: string){
+    this.terminoBuscado = termino;
     let url = URL_SERVICIOS + "/busqueda/todo/" + termino;
     this.http.get(url).subscribe((resp: any) => {
       this.usuarios = resp.usuarios;

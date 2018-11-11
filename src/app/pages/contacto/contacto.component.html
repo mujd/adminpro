@@ -1,0 +1,57 @@
+<div class="row animated fadeIn">
+    <div class="col-md-4 ml-5">
+        <div class="card">
+            <div class="card-body">
+
+                <h2 class="card-title text-center">Formulario de contacto</h2>
+                <hr>
+                <form ngNativeValidate (ngSubmit)="contactForm(form.value)" #form="ngForm">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control form-control-sm" name="nombre" ngModel required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>Rut</label>
+                        <input #input (keypress)="verificaRut(input.value)" type="text" [textMask]="{mask: rut, guide:false}" class="form-control form-control-sm" name="rut" ngModel required>
+                        <input type="text" class="form-control form-control-sm" pattern="^\d{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}$" name="rut" ngModel required>
+                        <input type="text" class="form-control form-control-sm" [textMask]="{mask: rut, guide:false}" name="rut" ngModel required>
+                    </div> -->
+                    <div class="form-group">
+                        <label>Asunto</label>
+                        <!--<input type="text" class="form-control" name="asunto" ngModel>-->
+                        <select class="form-control custom-select custom-select-sm" name="asunto" ngModel required>
+                            <option value="">Seleccione</option>
+                            <option value="Pedido">Pedido</option>
+                            <option value="Reclamo">Reclamo</option>
+                            <option value="Sugerencia">Sugerencia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control form-control-sm" name="email" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono</label>
+                        <input type="text" class="form-control form-control-sm" [textMask]="{mask: fonoChile, guide:false,showMask:true}" name="telefono" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea class="form-control form-control-sm" cols="30 " rows="6 " name="mensaje" ngModel required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary btn-sm">Enviar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 ml-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center">¿Cómo llegar?</h2>
+                <a target="_blank" href="https://www.google.com/maps/place/Jardín+Alto+8083,+La+Florida,+Región+Metropolitana/@-33.5246806,-70.5627909,17z/data=!4m5!3m4!1s0x9662d10f75b8cdf9:0xc1786f87bbc02de6!8m2!3d-33.5255758!4d-70.5609731">
+                    <img width="350" src="../../../assets/images/mapa-ahimsa2.png" alt="" class="img-fluid rounded">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
